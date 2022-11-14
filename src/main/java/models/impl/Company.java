@@ -25,6 +25,7 @@ public class Company implements PageItem {
     private String parsingUrl;
     private LocalDateTime parsingTime;
 
+    @Override
     public Map<String, String> getAttributes() {
         Map<String, String> attributes = new LinkedHashMap<>();
         attributes.put("name", name);

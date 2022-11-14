@@ -27,6 +27,7 @@ public class CompanyWebsiteService implements WebsiteService {
         this.parser = new CompaniesPageParser();
     }
 
+    @Override
     public Collection<PageItem> getItems(String baseUrl, String firstPageLink) {
         Collection<PageItem> pageItems = new ArrayList<>();
         Document page;

@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 
 public class CompanyParser implements PageItemParser {
 
+    @Override
     public PageItem parsePageItem(Element companyBlock, String pageUrl) throws IllegalArgumentException {
         if (!companyBlock.classNames().contains(PageCssClass.COMPANIES_ITEM.toString()))
             throw new IllegalArgumentException();

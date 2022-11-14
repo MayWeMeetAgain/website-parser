@@ -21,6 +21,7 @@ public class InCsvWriter implements InFileWriter {
     public static final QuoteMode QUOTE_MODE = QuoteMode.MINIMAL;
     public static final Logger log = Logger.getLogger(InCsvWriter.class.getName());
 
+    @Override
     public void write(Collection<Writable> items, Path path) {
         try {
             log.info("connecting to output file");

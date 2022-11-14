@@ -23,6 +23,7 @@ public class CompaniesPageParser implements PageParser {
         this.parser = new CompanyParser();
     }
 
+    @Override
     public Collection<PageItem> parse(Document page) throws WebsiteFormatException {
         Elements companyBlocks = page.getElementsByClass(PageCssClass.COMPANIES_ITEM.toString());
         Collection<PageItem> companies = new ArrayList<>();
