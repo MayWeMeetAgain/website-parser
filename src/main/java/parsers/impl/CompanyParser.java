@@ -10,8 +10,6 @@ import utils.ElementExtension;
 import utils.enums.PageCssClass;
 
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.Locale;
 
 public class CompanyParser implements PageItemParser {
 
@@ -19,19 +17,19 @@ public class CompanyParser implements PageItemParser {
         if (!companyBlock.classNames().contains(PageCssClass.COMPANIES_ITEM.toString()))
             throw new IllegalArgumentException();
 
-        String title = parseTitle(ElementExtension.getElementByClassName(companyBlock, CompanyOptionCssClass.TITLE_CLASS));
+        String name = parseName(ElementExtension.getElementByClassName(companyBlock, CompanyOptionCssClass.NAME_CLASS));
         Boolean isAccredited = ElementExtension.ifExist(companyBlock, CompanyOptionCssClass.IS_ACCREDITED);
         Boolean isHabrMember = ElementExtension.ifExist(companyBlock, CompanyOptionCssClass.IS_HABR_MEMBER);
         Double rating = parseRating(ElementExtension.getElementByClassName(companyBlock, CompanyOptionCssClass.RATING));
         String location = parseLocation(ElementExtension.getElementByClassName(companyBlock, CompanyOptionCssClass.LOCATION));
-        String size = parseSize(ElementExtension.getElementByClassName(companyBlock, CompanyOptionCssClass.SIZE));
+        String sizeType = parseSizeType(ElementExtension.getElementByClassName(companyBlock, CompanyOptionCssClass.SIZE));
         Integer vacanciesCount = parseVacanciesCount(ElementExtension.getElementByClassName(companyBlock, CompanyOptionCssClass.VACANCIES));
-        String companyUrl = parseLink(ElementExtension.getElementByClassName(companyBlock, CompanyOptionCssClass.TITLE_CLASS));
+        String companyUrl = parseLink(ElementExtension.getElementByClassName(companyBlock, CompanyOptionCssClass.NAME_CLASS));
 
-        return new Company(title, isAccredited, isHabrMember, rating, location, size, vacanciesCount, companyUrl, pageUrl, LocalDateTime.now());
+        return new Company(name, isAccredited, isHabrMember, rating, location, sizeType, vacanciesCount, companyUrl, pageUrl, LocalDateTime.now());
     }
 
-    private static String parseTitle(Element titleBlock) throws WebsiteFormatException {
+    private static String parseName(Element titleBlock) throws WebsiteFormatException {
         if (titleBlock == null)
             throw new WebsiteFormatException();
         return titleBlock.text();
@@ -49,7 +47,7 @@ public class CompanyParser implements PageItemParser {
         return locationBlock.select("a").text();
     }
 
-    private static String parseSize(Element sizeBlock) {
+    private static String parseSizeType(Element sizeBlock) {
         if (sizeBlock == null)
             return null;
         return sizeBlock.select("a").text();

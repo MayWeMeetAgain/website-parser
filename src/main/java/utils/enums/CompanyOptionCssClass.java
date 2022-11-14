@@ -1,7 +1,7 @@
 package utils.enums;
 
 public enum CompanyOptionCssClass {
-    TITLE_CLASS("title"),
+    NAME_CLASS("title"),
     IS_ACCREDITED("svg-icon--icon-accredited"),
     IS_HABR_MEMBER("company-icons__icon_habr"),
     RATING("rating"),
